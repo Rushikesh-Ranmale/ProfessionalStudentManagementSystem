@@ -56,13 +56,16 @@ function saveStudent() {
 
     if ($('#Name').val() == '') {
         $("#nameError").text("Please Enter Name.");
+        $("#Name").addClass("is-invalid");
         return false;
     }
     else {
         $("#nameError").text("");
+        $("#Name").removeClass("is-invalid");
     }
     if ($('#Age').val() == '') {
         $("#ageError").text("Please Enter Age.");
+        $("#Age").addClass("is-invalid");
         return false;
     }
     else {
@@ -71,19 +74,32 @@ function saveStudent() {
 
         if (isNaN(age) || age < 1 || age > 100) {
             $("#ageError").text("Age must be between 1 and 100.");
+            $("#Age").addClass("is-invalid");
             return false;
         } else {
             $("#ageError").text("");
+            $("#Age").removeClass("is-invalid");
         }
         
     }
 
     if ($('#Email').val() == '') {
         $("#emailError").text("Please Enter Email.");
+        $("#Email").addClass("is-invalid");
         return false;
     }
     else {
-        $("#emailError").text("");
+        var email = $('#Email').val();
+        var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (!emailPattern.test(email)) {
+            $("#emailError").text("Please enter a valid email address.");
+            $("#Email").addClass("is-invalid");
+            return false;
+        } else {
+            $("#emailError").text("");
+            $("#Email").removeClass("is-invalid");
+        }
     }
     var student = {
         Id: id ? parseInt(id) : 0,
