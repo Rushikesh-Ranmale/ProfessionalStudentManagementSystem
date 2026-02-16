@@ -201,3 +201,67 @@ $("#Name").on("input", function () {
     var value = $(this).val();
     $(this).val(value.replace(/[^a-zA-Z '-]/g, ''));
 });
+
+$("#aiInput").on("keypress", function (e) {
+
+    if (e.which === 13) {   // Enter key
+        e.preventDefault();
+        processAIInput();
+    }
+});
+
+function processAIInput() {
+
+    var input = $("#aiInput").val().trim();
+
+    if (input === "") return;
+
+    var name = "";
+    var age = null;
+    var email = "";
+
+    // 1️⃣ Extract Email (always easiest to detect first)
+    var emailMatch = input.match(/[^\s@]+@[^\s@]+\.[^\s@]+/);
+    if (emailMatch) {
+        email = emailMatch[0];
+        input = input.replace(email, "").trim();
+    }
+
+    // 2️⃣ Extract Age (number between 1-100)
+    var ageMatch = input.match(/\b([1-9][0-9]?|100)\b/);
+    if (ageMatch) {
+        age = parseInt(ageMatch[0]);
+        input = input.replace(ageMatch[0], "").trim();
+    }
+
+    // 3️⃣ Remove common words (for natural sentence support)
+    input = input
+        .replace(/add/i, "")
+        .replace(/age/i, "")
+        .replace(/email/i, "")
+        .replace(/student/i, "")
+        .replace(/name/i, "")
+        .replace(/,/g, "")
+        .trim();
+
+    name = input;
+
+    // 🔎 Validation
+    if (!name || !age || !email) {
+        Swal.fire("Error", "Could not understand input format", "error");
+        return;
+    }
+
+    var student = {
+        Id: 0,
+        Name: name,
+        Age: age,
+        Email: email
+    };
+
+    createStudent(student);
+
+    Swal.fire("Success", "Student added successfully!", "success");
+
+    $("#aiInput").val("");
+}
