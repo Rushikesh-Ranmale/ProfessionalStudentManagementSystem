@@ -11,6 +11,14 @@ function loadStudents() {
 
     var search = $("#search").val();
 
+    $("#studentTable").html(`
+        <tr>
+            <td colspan="4" class="text-center">
+                <div class="small-dot-loader"></div>
+            </td>
+        </tr>
+    `);
+     
     $.get('/Student/GetStudents', {
         page: currentPage,
         pageSize: pageSize,
@@ -18,9 +26,10 @@ function loadStudents() {
         sortColumn: currentSort,
         sortDirection: currentDirection
     }, function (response) {
-
+     
         renderTable(response.data);
         renderPagination(response.total);
+
     });
 }
 
