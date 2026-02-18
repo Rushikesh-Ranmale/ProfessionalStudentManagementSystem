@@ -246,7 +246,7 @@ function processAIInput() {
 
     name = input;
 
-    // 🔎 Validation
+    // Validation
     if (!name || !age || !email) {
         Swal.fire("Error", "Could not understand input format", "error");
         return;
@@ -264,4 +264,37 @@ function processAIInput() {
     Swal.fire("Success", "Student added successfully!", "success");
 
     $("#aiInput").val("");
+}
+function openAIMode() {
+    window.location.href = '/Student/AIMode';
+}
+function openChatbot() {
+    $("#chatbotModal").modal("show");
+}
+
+$("#chatInput").on("keypress", function (e) {
+    if (e.which === 13) {
+        sendMessage();
+    }
+});
+
+function sendMessage() {
+
+    var message = $("#chatInput").val();
+    if (!message) return;
+
+    $("#chatBody").append(`<div class='text-end mb-2'>
+        <span class='badge bg-primary p-2'>${message}</span>
+    </div>`);
+
+    $("#chatInput").val("");
+
+    $.post('/Student/AskChatbot', { question: message }, function (response) {
+
+        $("#chatBody").append(`<div class='text-start mb-2'>
+            <span class='badge bg-secondary p-2'>${response.answer}</span>
+        </div>`);
+
+        $("#chatBody").scrollTop($("#chatBody")[0].scrollHeight);
+    });
 }

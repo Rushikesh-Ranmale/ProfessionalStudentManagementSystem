@@ -18,6 +18,10 @@ namespace ProfessionalStudentManagementSystem.Controllers
         {
             return View();
         }
+        public IActionResult AIMode()
+        {
+            return View();
+        }
 
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] Student student)
@@ -95,6 +99,48 @@ namespace ProfessionalStudentManagementSystem.Controllers
                 total = totalRecords
             });
         }
+
+        [HttpPost]
+        public async Task<IActionResult> AskChatbot(string question)
+        {
+            question = question.ToLower();
+
+            if (question.Contains("how many student"))
+            {
+                var count = await _context.Students.CountAsync();
+                return Json(new { answer = $"Total students are {count}" });
+            }
+
+            if (question.Contains("below 25"))
+            {
+                var count = await _context.Students
+                    .CountAsync(s => s.Age <= 25);
+
+                return Json(new { answer = $"Students below 25 age: {count}" });
+            }
+
+            if (question.Contains("between 30 to 40") || question.Contains("30 to 40"))
+            {
+                var count = await _context.Students
+                    .CountAsync(s => s.Age >= 30 && s.Age <= 40);
+
+                return Json(new { answer = $"Students age between 30 to 40: {count}" });
+            }
+
+            if (question.Contains("dyna") || question.Contains("Robert"))
+            {
+                var student = await _context.Students
+                    .FirstOrDefaultAsync(s => s.Name.ToLower() == "dyna");
+
+                if (student != null)
+                    return Json(new { answer = $"Dyna's email is {student.Email}" });
+                else
+                    return Json(new { answer = "Student Dyna not found" });
+            }
+
+            return Json(new { answer = "Sorry, I didn't understand your question." });
+        }
+
 
 
     }
