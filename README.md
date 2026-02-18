@@ -12,6 +12,35 @@ A simple Student Management System built using ASP.NET Core MVC, Entity Framewor
 - Dynamic sorting (Name, Age, Email)
 - Client-side validation
 - AJAX-based CRUD operations (No page reload)
+- 🤖 AI Chatbot for Student Queries
+
+## 🤖 AI Chatbot Feature (New)
+  An integrated AI-powered chatbot that allows users to ask questions about student data directly from the system.
+
+🔹 Chatbot Capabilities
+- Get total number of students
+- Count students below a certain age
+- Count students between age ranges
+- Retrieve specific student email
+- Real-time response using AJAX
+- Bootstrap modal UI
+
+🔹 How It Works
+
+ 1.User opens chatbot modal.
+ 2.User types a question.
+ 3.AJAX sends the question to
+  /Student/AskChatbot
+ 4.Controller processes the question.
+ 5.Entity Framework queries the database.
+ 6.JSON response is returned and displayed in chat UI.
+
+🔹 Sample Questions
+
+- "How many students are there?"
+- "How many students below 25?"
+- "Students between 30 to 40"
+- "What is Dyna's email?"
 
 ---
 
@@ -22,6 +51,9 @@ A simple Student Management System built using ASP.NET Core MVC, Entity Framewor
 - SQL Server
 - jQuery (AJAX)
 - Bootstrap 5
+- C#
+- LINQ
+- JSON
 
 ---
 
@@ -31,6 +63,7 @@ A simple Student Management System built using ASP.NET Core MVC, Entity Framewor
 - Controllers → StudentController.cs
 - Views → Index.cshtml
 - wwwroot/js → student.js
+- 🤖 Chatbot Endpoint → AskChatbot() (POST method)
 
 ---
 
@@ -63,6 +96,14 @@ A simple Student Management System built using ASP.NET Core MVC, Entity Framewor
 - Click column header to sort
 - Toggle Ascending / Descending
 
+### 7️⃣ AI Chatbot
+
+- Bootstrap modal interface
+- AJAX-based question submission
+- Backend logic using Entity Framework
+- JSON response handling
+- Dynamic chat UI updates
+
 ---
 
 ## ▶️ How to Run Project
@@ -77,12 +118,13 @@ A simple Student Management System built using ASP.NET Core MVC, Entity Framewor
 
 ## 📸 Screenshot
 
-<img width="908" height="422" alt="image" src="https://github.com/user-attachments/assets/4e3d4935-10eb-4b23-8eba-5bd77ee4a836" />
+<img width="852" height="391" alt="image" src="https://github.com/user-attachments/assets/7f115d28-4dd4-4109-b206-771635798fdc" />
 Validation :-
 <img width="857" height="154" alt="image" src="https://github.com/user-attachments/assets/c48e2bc8-29ef-4401-a1fb-de65ebf8ea84" />
-<img width="863" height="161" alt="image" src="https://github.com/user-attachments/assets/c6eb9b18-0785-4919-ad4f-ad227b9e61c9" />
 Search :-
 <img width="882" height="256" alt="image" src="https://github.com/user-attachments/assets/7c9cdea2-1a12-4183-a92c-b99d0b919f66" />
+Chatbot :-
+<img width="605" height="419" alt="image" src="https://github.com/user-attachments/assets/14add6cf-d6c1-4994-83a2-3be85bc26af4" />
 
 ---
 
