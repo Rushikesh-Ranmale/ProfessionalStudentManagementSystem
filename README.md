@@ -125,6 +125,8 @@ Search :-
 <img width="882" height="256" alt="image" src="https://github.com/user-attachments/assets/7c9cdea2-1a12-4183-a92c-b99d0b919f66" />
 Chatbot :-
 <img width="605" height="419" alt="image" src="https://github.com/user-attachments/assets/14add6cf-d6c1-4994-83a2-3be85bc26af4" />
+AI Mode :-
+<img width="859" height="433" alt="image" src="https://github.com/user-attachments/assets/c3b636a0-0b9f-497c-a621-ba128a28d320" />
 
 ---
 
